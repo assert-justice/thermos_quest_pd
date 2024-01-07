@@ -127,9 +127,8 @@ local guesses = {
     },
 }
 
-act1 = {}
-
-local function setup()
+function act1()
+    local act = {}
     local guessedOptions = {}
     local guessCount = 0
     local options = {}
@@ -145,12 +144,11 @@ local function setup()
         local op = Option(guess.number, guess.number, hideFn, useFn)
         options[idx] = op
         local prompt = Option(guess.prompt, dest)
-        act1[guess.number] = newTextNode(guess.response, {prompt})
+        act[guess.number] = newTextNode(guess.response, {prompt})
     end
 
     local startNode = newTitleTextNode("_Act 1: The Treachery of Objects_","To get back in first you'll have to enter a combination on a keypad. What do you enter?", options)
     startNode:getComponent("select"):resize(50, 100, 300, 140)
-    act1["start"] = startNode
+    act["start"] = startNode
+    return act
 end
-
-setup()

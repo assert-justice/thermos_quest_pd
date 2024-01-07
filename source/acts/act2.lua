@@ -10,7 +10,7 @@ local pd <const> = playdate
 local gfx <const> = playdate.graphics
 local pl <const> = player
 
-act2 = {}
+-- act2 = {}
 
 local items = {
     {
@@ -195,7 +195,8 @@ local defaultResponses = {
     "I question your approach to this problem."
 }
 
-local function setup()
+function act2()
+    local act = {}
     local heldItems = {}
     local options = {Option("Great...", "room")}
     local startNode = newTitleTextNode("_Act Two: Time to take Inventory_","After that ordeal you make it to the break room. A keycard reader will let you further into the compound. Good news: you have the card. Bad news: a rascally cowoker has defaced it with a big gross mustache. You'll need to get it off with some kind of contrived inventory puzzle...", options)
@@ -206,7 +207,7 @@ local function setup()
         pl.inventory["defaced keycard"] = true
         pl.inventory["ballpoint pen"] = true
     end
-    act2["start"] = startNode
+    act["start"] = startNode
     
     local cupboardState = "locked"
     local cupboardDescFn = function()
@@ -226,7 +227,7 @@ local function setup()
         Option("Go back", "room"),
         Option("[Look at inventory]", "inventory"),
     })
-    act2["cupboard"] = cupboard
+    act["cupboard"] = cupboard
 
     local stoveState = "full"
     local stoveDescFn = function()
@@ -243,7 +244,7 @@ local function setup()
         Option("Go back", "room"),
         Option("[Look at inventory]", "inventory"),
     })
-    act2["stove"] = stove
+    act["stove"] = stove
 
     local keyReaderState = "full"
     local keyReaderDescFn = function()
@@ -261,7 +262,7 @@ local function setup()
         Option("Go back", "room"),
         Option("[Look at inventory]", "inventory"),
     })
-    act2["key_reader"] = keyReader
+    act["key_reader"] = keyReader
 
     local freezerState = "full"
     local freezerDescFn = function()
@@ -278,7 +279,7 @@ local function setup()
         Option("Go back", "room"),
         Option("[Look at inventory]", "inventory"),
     })
-    act2["freezer"] = freezer
+    act["freezer"] = freezer
 
     local inventoryOptions = {}
     for idx,item in ipairs(items) do
@@ -298,7 +299,7 @@ local function setup()
         end 
     end))
     inventory:addComponent("select", Select(10, 30, 380, 210, inventoryOptions, gfx.getSystemFont():getHeight()*3))
-    act2["inventory"] = inventory
+    act["inventory"] = inventory
 
     local summary = newTitleTextNode("Results:", function()
         local res = "[funny line]"
@@ -324,7 +325,7 @@ local function setup()
         res = defaultResponses[math.random(#defaultResponses)]
         return res
     end, {Option("[Return to room]", "room")})
-    act2["summary"] = summary
+    act["summary"] = summary
 
     local roomNode = newTitleTextNode("The Room", "As you look around the room you note the following points of interest:", {
         Option("Cupboard", "cupboard", function() return cupboardState ~= "empty" end),
@@ -335,7 +336,6 @@ local function setup()
     })
     roomNode:getComponent("select"):resize(50, 100, 300, 130)
     roomNode.visitedFn = function() heldItems = {} end
-    act2["room"] = roomNode
+    act["room"] = roomNode
+    return act
 end
-
-setup()

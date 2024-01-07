@@ -22,7 +22,7 @@ function setAct(actId)
     pl.currentAct = actId
     if actId > pl.maxAct then pl.maxAct = actId end
     -- add act nodes
-    local act = acts[actId]
+    local act = acts[actId]()
     for name,node in pairs(act) do
         nodeManager:addNode(name,node)
     end

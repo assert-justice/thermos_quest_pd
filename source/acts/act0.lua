@@ -7,9 +7,8 @@ local pd <const> = playdate
 local gfx <const> = playdate.graphics
 local pl <const> = player
 
-act0 = {}
-
 local function setup()
+    local act = {}
     local titles = {"Mr.", "Ms.", "Mx.", "Doctor", "Captain"}
     local firstNames = {"Marla","Winifred","Albert","Ester","Fenric","Vanessa","Edith","Rene","Trilby","Sanjay","Mateo","Madeline","Stetson","Thing","Franz","Wensleydale","Petra","Marty","Emmett","Biff","Lyndon","Dick","Dolemite","Martok","Alowishus","Grogu","Rupret","Apollonius","Terspichore","Demosthenes","Anastasia","Xerxes","Phobos","Ganymede","Hyperion","Umbriel","Proteus","Charon","Dysnomia","Steve","Oedon","Percy","Hikaru","Wally","Shawn","Hermes","Toby","Nashandra"}
     local middleNames = {"Duke","Pearl","Seersucker","Foxglove","Hootenanny","Devadander","Snakes","Houndstooth","Obediah","Tyrion","Wafflemacher","Bader","S","Argyle","'Two Sheds'","Damask","Matelasse","Quatrefoil","Suzani","Chevron","Paisley","Ogee","Herringbone","Chinoiserie","Lingthusiasm","Titania","Millicent","Zilpah","Ziggy","Linus","Trilobyte","Arachnidae","Atticus","Xen","Teriyaki","Soba","Radiatore","Fusilli","Fettuccine","Linguine","Gnocchi","Manicotti","Spaghetti","Ravioli","Tortellini"}
@@ -31,12 +30,11 @@ local function setup()
     for idx,str in ipairs(lastNames) do
         lastNameOptions[idx] = Option(str, "honorific", nil, function() pl.name = pl.name .. " " .. str end)
     end
-    act0["start"] = newTitleTextNode("Prologue","On your walk home from Ethical Corp™ you are filled with a dawning horror as you realize... You left your thermos behind! And it's after hours! Flustered you try to remember your first name:", firstNameOptions)
-    act0["middle_name"] = newTextNode("Good job! After some more consideration you remember your middle name:", middleNameOptions)
-    act0["last_name"] = newTextNode("Truly your powers of recollection are remarkable. Your last name then?", lastNameOptions)
-    act0["honorific"] = newTextNode("Finally, what honorific do you go by?", titleOptions)
-    act0["summary"] = newTextNode(function() return "Of course, your name is and has always been " 
+    act["start"] = newTitleTextNode("Prologue","On your walk home from Ethical Corp™ you are filled with a dawning horror as you realize... You left your thermos behind! And it's after hours! Flustered you try to remember your first name:", firstNameOptions)
+    act["middle_name"] = newTextNode("Good job! After some more consideration you remember your middle name:", middleNameOptions)
+    act["last_name"] = newTextNode("Truly your powers of recollection are remarkable. Your last name then?", lastNameOptions)
+    act["honorific"] = newTextNode("Finally, what honorific do you go by?", titleOptions)
+    act["summary"] = newTextNode(function() return "Of course, your name is and has always been " 
         .. pl.honorific .. " " .. pl.name end, {Option("Of course", "next")})
+    return act
 end
-
-setup()
