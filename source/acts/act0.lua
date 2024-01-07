@@ -7,7 +7,7 @@ local pd <const> = playdate
 local gfx <const> = playdate.graphics
 local pl <const> = player
 
-local function setup()
+function act0()
     local act = {}
     local titles = {"Mr.", "Ms.", "Mx.", "Doctor", "Captain"}
     local firstNames = {"Marla","Winifred","Albert","Ester","Fenric","Vanessa","Edith","Rene","Trilby","Sanjay","Mateo","Madeline","Stetson","Thing","Franz","Wensleydale","Petra","Marty","Emmett","Biff","Lyndon","Dick","Dolemite","Martok","Alowishus","Grogu","Rupret","Apollonius","Terspichore","Demosthenes","Anastasia","Xerxes","Phobos","Ganymede","Hyperion","Umbriel","Proteus","Charon","Dysnomia","Steve","Oedon","Percy","Hikaru","Wally","Shawn","Hermes","Toby","Nashandra"}
