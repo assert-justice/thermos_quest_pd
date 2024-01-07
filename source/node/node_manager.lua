@@ -40,15 +40,15 @@ function NodeManager:navigate(name)
     -- maybe add transitions?
     if self.currentNode then self.currentNode:unmount() end
     -- check for special names
-    if self.rules[name] then
+    if name == "back" then
+        self.nameStack[#self.nameStack] = nil
+        name = self.nameStack[#self.nameStack]
+    elseif self.rules[name] then
         name = self.rules[name]()
     end
-    -- print("")
-    -- print(name)
-    -- for na,no in pairs(self.nodes) do print(na) end
-    -- print(self.nodes[name])
     assert(self.nodes[name])
     player.currentNode = name
+    self.nameStack[#self.nameStack+1] = name
     self.currentNode = self.nodes[name]
     self.currentNode:mount()
 end

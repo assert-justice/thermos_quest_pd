@@ -31,6 +31,20 @@ function newTitleTextNode(titleText, descriptionText, options)
     return node
 end
 
+function newQuipNode(titleText, descriptionText, options)
+    local node = Node()
+    -- add title component
+    local title = Title(0, 10, 400, 30, titleText)
+    node:addComponent("title", title)
+    local description = Title(10, 30, 380, 180, descriptionText)
+    description.align = kTextAlignment.left
+    node:addComponent("description", description)
+    -- add select component
+    local select = Select(50, 210, 300, 30, options)
+    node:addComponent("select", select)
+    return node
+end
+
 function newTitleNode(titleText, options)
     local node = Node()
     local title = Title(0, 10, 400, 100, titleText)

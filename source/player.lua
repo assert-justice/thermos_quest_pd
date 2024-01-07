@@ -7,7 +7,7 @@ function Player:init()
     self.honorific = "Mx."
     self.state = {}
     self.inventory = {}
-    self.currentAct = 3
+    self.currentAct = 4
     self.maxAct = 5
     self.nodeName = "start"
 end

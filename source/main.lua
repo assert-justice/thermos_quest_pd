@@ -6,6 +6,7 @@ import "player"
 import "acts/act0"
 import "acts/act1"
 import "acts/act2"
+import "acts/act3"
 
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
@@ -13,7 +14,7 @@ local pl <const> = player
 
 local nodeManager = nil
 
-local acts = {act0, act1, act2}
+local acts = {act0, act1, act2, act3}
 
 function setAct(actId)
     -- clear on global nodes
